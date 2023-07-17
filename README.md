@@ -50,7 +50,7 @@
   <img src="./imgs/5.png" width = "400" height = "200" alt="数量" align=center />
 
 
-- 重试次数, 默认: 5毫秒
+- 重试次数, 默认: 5次
 
 - 重试间隔, 默认: 100毫秒
 
