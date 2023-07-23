@@ -4,6 +4,17 @@
 
 大麦网自动购票, 支持docker一键部署。
 
+仅供学习。
+
+## 原理
+
+- 扫码登录: 
+  - 1. API获取二维码输出到终端, 轮询扫码状态。
+  - 2. 扫码成功后, 获取cookie, 此时的cookie缺少某些字段无法使用。
+  - 3. chromedriver操作浏览器带上第2步获取的cookie跳转h5用户信息页面, 得到最终的cookie。
+- 抢票:
+  - 1. 通过API生成订单, 提交订单。
+
 ## 特别声明
 
 - 本项目内所有资源文件，禁止任何公众号、自媒体进行任何形式的转载、发布。
@@ -25,10 +36,12 @@
 1. 下载[docker-compose.yml](https://github.com/ClassmateLin/dm-ticket/blob/main/docker-compose.yml)文件。
 2. 启动服务: `docker-compose up -d`
 3. 执行任务: `docker exec -it dm-ticket dm-client`
-  
-- 扫码登录: 
-  
-  <img src="./imgs/1.png" width = "400" height = "300" alt="扫码登录" align=center />
+
+- 登录方式
+  - 1.扫码登录: 
+    
+    <img src="./imgs/1.png" width = "400" height = "300" alt="扫码登录" align=center />
+  - 2.输入cookie, 自行在[h5](https://m.damai.cn/)提取cookie, 或者配合项目[dm-login](https://github.com/ClassmateLin/dm-login)使用账号密码登录。
 
 - 选择演唱会: 
 
@@ -58,6 +71,8 @@
 - 请求时间偏移量: 负数=>提前发送数据包, 正数推迟发送数据包, 默认0, 单位毫秒。
 
 - 优先购时长: 正式抢购时间 - 优先购时间, 默认: 0, 单位分钟。
+
+  <img src="./imgs/example.png" width = "400" height = "200" alt="数量" align=center />
 
 ### 使用Rust
 
